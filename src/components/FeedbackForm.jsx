@@ -1,4 +1,5 @@
 import { useState } from "react"//to handle input states for our form
+import RatingSelect from "./RatingSelect"
 import Card from "./shared/Card"//because we want to wrap the form in a card
 import Button from "./shared/Button"
 
@@ -7,6 +8,7 @@ import Button from "./shared/Button"
 function FeedbackForm() {
 
 const [text, setText] = useState('')
+const [rating, setRating] = useState(10)
 const [btnDisabled, setBtnDisabled] = useState('true')
 const [message, setMessage] = useState('')
 
@@ -30,7 +32,7 @@ const handleTextChange = (e) => { ///real-time validation
       <form> 
         <h2>How would you rate your service with us
         </h2>
-        {/* @todo - rating select component */}
+        <RatingSelect select={setRating} selected={rating} />
         <div className="input-group">
             <input 
             onChange={handleTextChange}

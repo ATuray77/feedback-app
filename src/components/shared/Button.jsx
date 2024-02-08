@@ -1,19 +1,17 @@
 import PropTypes from 'prop-types'
 
-
-function Button({ children, version, type, isDisabled }) {//children would be the text around which the buton conmponent is wrap around
+function Button({ children, version, type, isDisabled }) {
   return (
-    <Button type={type} disabled={isDisabled} className={`btn btn-${version}`}>
+    <button type={type} disabled={isDisabled} className={`btn btn-${version}`}>
       {children}
-    </Button>
+    </button>
   )
 }
-
 
 Button.defaultProps = {
   version: 'primary',
   type: 'button',
-  isDisabled: false
+  isDisabled: false,
 }
 
 Button.propTypes = {
@@ -22,6 +20,5 @@ Button.propTypes = {
   type: PropTypes.string,
   isDisabled: PropTypes.bool,
 }
-
 
 export default Button

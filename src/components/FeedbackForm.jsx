@@ -2,9 +2,14 @@ import { useState } from "react"//to handle input states for our form
 import Card from "./shared/Card"//because we want to wrap the form in a card
 import Button from "./shared/Button"
 
+
+
 function FeedbackForm() {
 
 const [text, setText] = useState('')
+const [bthDisabled, setBtnDisabled] = useState('true')
+const [message, setMessage] = useState('')
+
 
 const handleTextChange = (e) => {
     setText(e.target.value)
@@ -22,7 +27,7 @@ const handleTextChange = (e) => {
             type="text"  
             placeholder="Write a review"
             value= {text}/>
-            <Button type="submit" version='secondary' >Send</Button>
+            <Button type="submit">Send</Button>
         </div>
       </form>
     </Card>

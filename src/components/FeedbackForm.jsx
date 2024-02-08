@@ -32,7 +32,7 @@ const handleTextChange = (e) => { ///real-time validation
       <form> 
         <h2>How would you rate your service with us
         </h2>
-        <RatingSelect select={setRating} selected={rating} />
+        <RatingSelect select={(rating) => setRating(rating)} />
         <div className="input-group">
             <input 
             onChange={handleTextChange}

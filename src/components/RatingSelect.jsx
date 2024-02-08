@@ -1,11 +1,12 @@
 import { useState } from "react"
 
-function RatingSelect() {
+function RatingSelect({select}) {
 
-const [selected, setSelected] = useState(10) //state for selected rating
+const [selected, setSelected] = useState(5) //state for selected rating
 
-const handleChange = (e) => {
-
+const handleChange = (e) => { //when we select a rating, we call setSelected to document the change
+    setSelected(+e.currentTarget.value)// '+e' change the type to a number
+    select(+e.currentTarget.value)//calls the select function and pass in the new value
 }
 
   return (

@@ -16,7 +16,7 @@ function FeedbackList({ feedback, handleDelete }) {
         < Feedbackitem 
         key={item.id} 
         item={item} 
-        handleDelete= {handleDelete}/>
+        handleDelete= {handleDelete}/> //passing the handle delete function to app.js
       ))}
     </div>
   )

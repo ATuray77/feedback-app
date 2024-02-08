@@ -1,6 +1,6 @@
 import { useState } from "react"//to handle input states for our form
 import Card from "./shared/Card"//because we want to wrap the form in a card
-
+import Button from "./shared/Button"
 
 function FeedbackForm() {
 
@@ -22,7 +22,7 @@ const handleTextChange = (e) => {
             type="text"  
             placeholder="Write a review"
             value= {text}/>
-            <button type="submit">Send</button>
+            <Button type="submit" version='secondary' >Send</Button>
         </div>
       </form>
     </Card>

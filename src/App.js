@@ -29,6 +29,7 @@ function App() {
     }
 
     return (
+    <FeedbackProvider>
     <Router>
     <Header />
     <div className="container">
@@ -49,6 +50,7 @@ function App() {
         <AboutIconLink />
     </div>
     </Router>
+    </FeedbackProvider>
         
     )
 }

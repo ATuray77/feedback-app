@@ -1,10 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion" //fading in and out
-import PropTypes from 'prop-types'
+import { useContext } from "react"
 import Feedbackitem from "./Feedbackitem"
+import feedbackContext from "../context/FeedBackContext"
 
 
 
-function FeedbackList({ feedback, handleDelete }) {
+function FeedbackList({ handleDelete }) {
+  const {feedback} = useContext(feedbackContext) //we extract whatever we want from our feedback content by using our useContext hook and then pass in whatever context we want 
 
     if (!feedback || feedback.length === 0) {
         return <p>No Feedback yet</p>
@@ -40,17 +42,6 @@ function FeedbackList({ feedback, handleDelete }) {
   //     ))}
   //   </div>
   // )
-}
-
-FeedbackList.propTypes = {
-    feedback: PropTypes.arrayOf(
-        PropTypes.shape({
-            //id: PropTypes.number.isRequired,
-            id: PropTypes.oneOfType([PropTypes.number, PropTypes.string ]),
-            text: PropTypes.string.isRequired,
-            rating: PropTypes.number.isRequired,
-        })
-    )
 }
 
 export default FeedbackList

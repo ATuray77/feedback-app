@@ -6,7 +6,7 @@ const [selected, setSelected] = useState(5) //state for selected rating
 
 const handleChange = (e) => { //when we select a rating, we call setSelected to document the change
     setSelected(+e.currentTarget.value)// '+e' change the type to a number
-    select(+e.currentTarget.value)//calls the select function and pass in the new value
+    select(+e.currentTarget.value)//calls the select function and pass in the new value. updating the value
 }
 
   return (

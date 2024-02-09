@@ -5,7 +5,7 @@ import Button from "./shared/Button"
 
 
 
-function FeedbackForm({handleAdd}) {
+function FeedbackForm({handleAdd}) { //passing handle add function up to the parent
 
 const [text, setText] = useState('')
 const [rating, setRating] = useState(10)
@@ -24,7 +24,7 @@ const handleTextChange = (e) => { ///real-time validation
     setMessage(null)
     setBtnDisabled(false)
   }
-    setText(e.target.value)
+    setText(e.target.value)//calls setText to update the text value
 }
 
 const handleSubmit = (e) => {
@@ -34,8 +34,8 @@ const handleSubmit = (e) => {
       text,
       rating
     }
-    handleAdd(newFeedback)
-    setText('')
+    handleAdd(newFeedback)//pass in the new feedback to to handle add function
+    setText('')// calls setText to clear the text field after submission
   }
 }
 

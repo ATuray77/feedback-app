@@ -1,17 +1,19 @@
-import { useState } from "react"//to handle input states for our form
+import { useState, useContext } from "react"//to handle input states for our form
 import RatingSelect from "./RatingSelect"
 import Card from "./shared/Card"//because we want to wrap the form in a card
 import Button from "./shared/Button"
+import feedbackContext from "../context/FeedBackContext"
 
 
 
-function FeedbackForm({handleAdd}) { //passing handle add function up to the parent
+function FeedbackForm() { //passing handle add function up to the parent
 
 const [text, setText] = useState('')
 const [rating, setRating] = useState(10)
 const [btnDisabled, setBtnDisabled] = useState('true')
 const [message, setMessage] = useState('')
 
+const {addFeedback} = useContext(feedbackContext)
 
 const handleTextChange = (e) => { ///real-time validation
   if (text === '') {
@@ -34,7 +36,7 @@ const handleSubmit = (e) => {
       text,
       rating
     }
-    handleAdd(newFeedback)//pass in the new feedback to to handle add function
+    addFeedback(newFeedback)//pass in the new feedback to to handle add function
     setText('')// calls setText to clear the text field after submission
   }
 }

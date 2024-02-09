@@ -5,7 +5,7 @@ import feedbackContext from "../context/FeedBackContext"
 
 
 
-function FeedbackList({ handleDelete }) {
+function FeedbackList() {
   const {feedback} = useContext(feedbackContext) //we extract whatever we want from our feedback content by using our useContext hook and then pass in whatever context we want 
 
     if (!feedback || feedback.length === 0) {
@@ -25,7 +25,7 @@ function FeedbackList({ handleDelete }) {
           < Feedbackitem 
           key={item.id} 
           item={item} 
-          handleDelete= {handleDelete}/>
+        />
           </motion.div>
         ))}
         </AnimatePresence>

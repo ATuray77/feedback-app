@@ -11,7 +11,7 @@ export const FeedbackProvider = ({children}) => {
         {
             id: 1,
             text: 'I am Roliza, I love this product 1',
-            rating: 10,
+            rating: 6,
         },
         {
             id: 2,
@@ -21,11 +21,11 @@ export const FeedbackProvider = ({children}) => {
         {
             id: 3,
             text: 'I am Roliza! This item is a junk, so nasty 3',
-            rating: 10,
+            rating: 4,
         }
     ])
 
-    const [feedbackEdit, setFeedbackEdit] = useState({
+    const [feedbackEdit, setFeedbackEdit] = useState({//current state
         item: {}, //whichever item we are editing goes in here; it text, rating..
         edit: false //when the edit button is clicked, it will be set to true
     })
@@ -53,7 +53,8 @@ export const FeedbackProvider = ({children}) => {
         feedback,
         deleteFeedback,
         addFeedback,
-        editFeedback,
+        editFeedback,//function to edit
+        feedbackEdit, //the actual piece of state that holds the item(object)
     }}>
         {children}
     </feedbackContext.Provider>

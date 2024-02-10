@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"//to handle input states for our form
+import { useState, useContext, useEffect } from "react"//to handle input states for our form, context and side effects
 import RatingSelect from "./RatingSelect"
 import Card from "./shared/Card"//because we want to wrap the form in a card
 import Button from "./shared/Button"
@@ -13,7 +13,15 @@ const [rating, setRating] = useState(10)
 const [btnDisabled, setBtnDisabled] = useState('true')
 const [message, setMessage] = useState('')
 
-const {addFeedback} = useContext(feedbackContext)
+const {addFeedback, feedbackEdit} = useContext(feedbackContext)//feedback
+
+useEffect(() => { //when an item is clicked we want the page to rerender
+  if(feedbackEdit.edit === true) {//check if feedbackEdit has data
+  setBtnDisabled(false)//enable the button
+  setText(feedbackEdit.item.text) //set the value to what's in feedbackEdit.item
+  setRating(feedbackEdit.item.rating)
+  }
+  }, [feedbackEdit])//this is the dependency that triggers the reload
 
 const handleTextChange = (e) => { ///real-time validation
   if (text === '') {

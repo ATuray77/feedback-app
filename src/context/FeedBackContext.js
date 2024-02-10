@@ -41,9 +41,11 @@ useEffect(() => {
     }
 
 //delete feedbak
-    const deleteFeedback = (id) => {
+    const deleteFeedback = async (id) => {
         if (window.confirm('Are you sure you want to delete?')) 
         {
+            await fetch(`/feedback/${id}`, {method: 'DELETE'})//delete from backend
+
             setFeedback(feedback.filter((item) => item.id !== id)) //returns an array minus the one we are deleting
         }
     }
@@ -56,8 +58,18 @@ useEffect(() => {
     }
 
 //update feedback item
-    const updateFeedback =(id, updItem) =>{
-        setFeedback(feedback.map((item) => item.id === id ? {...item, ...updItem} : item)) //is the item id equal to the passed in id? if so...
+    const updateFeedback = async (id, updItem) =>{
+
+        const response = await fetch(`/feedback/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updItem)
+        })
+        const data = await response.json()
+
+        setFeedback(feedback.map((item) => item.id === id ? {...item, ...data} : item)) //is the item id equal to the passed in id? if so...
     }
 
     return <feedbackContext.Provider value={{ //pass in the data that needs passing; functions, date, etc...

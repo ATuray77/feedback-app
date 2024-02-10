@@ -1,4 +1,3 @@
-import { v4 as uuidv4} from 'uuid'
 import { createContext, useState, useEffect } from "react"//we bring in useEffect cause we want to grab the data as soon as the page is loaded
 
 
@@ -21,7 +20,7 @@ useEffect(() => {
 }, [])//empty dependency array cause we want it to run once when the page first loads
 //fetch feedback
     const fetchFeedback= async() => {
-        const response = await fetch(`http://localhost:5000/feedback?_sort=id`)
+        const response = await fetch(`/feedback?_sort=id`)//now set as a proxy
         const data = await response.json()
         
         setFeedback(data)
@@ -29,10 +28,18 @@ useEffect(() => {
     }
 
 //adds feedback
-    const addFeedback = (newFeedback) => {
-        newFeedback.id = uuidv4()//adds unique IDs
-        setFeedback([newFeedback, ...feedback]) //using spread operator to update
+    const addFeedback = async (newFeedback) => {
+        const response = await fetch('/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: newFeedback
+        })
+        const data = await response.json()//gives us the new feedback fron json
+        setFeedback([data, ...feedback]) //using spread operator to update
     }
+
 //delete feedbak
     const deleteFeedback = (id) => {
         if (window.confirm('Are you sure you want to delete?')) 

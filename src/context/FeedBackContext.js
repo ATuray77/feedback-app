@@ -1,5 +1,5 @@
 import { v4 as uuidv4} from 'uuid'
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"//we bring in useEffect cause we want to grab the data as soon as the page is loaded
 
 
 const feedbackContext = createContext()
@@ -8,27 +8,24 @@ const feedbackContext = createContext()
 
 export const FeedbackProvider = ({children}) => { 
     const [feedback, setFeedback] = useState([ //this is where state is stored
-        {
-            id: 1,
-            text: 'I am Roliza, I love this product 1',
-            rating: 6,
-        },
-        {
-            id: 2,
-            text: 'I am Roliza, I do not really like this product 2',
-            rating: 10,
-        },
-        {
-            id: 3,
-            text: 'I am Roliza! This item is a junk, so nasty 3',
-            rating: 4,
-        }
+        
     ])
-
     const [feedbackEdit, setFeedbackEdit] = useState({//current state
         item: {}, //whichever item we are editing goes in here; it text, rating..
         edit: false //when the edit button is clicked, it will be set to true
     })
+
+useEffect(() => {
+    fetchFeedback()
+}, [])//empty dependency array cause we want it to run once when the page first loads
+//fetch feedback
+    const fetchFeedback= async() => {
+        const response = await fetch(`http://localhost:5000/feedback?_sort=id`)
+        const data = await response.json()
+        
+        setFeedback(data)
+    }
+
 //adds feedback
     const addFeedback = (newFeedback) => {
         newFeedback.id = uuidv4()//adds unique IDs

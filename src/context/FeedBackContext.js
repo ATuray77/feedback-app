@@ -34,7 +34,7 @@ useEffect(() => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: newFeedback
+            body: JSON.stringify(newFeedback)
         })
         const data = await response.json()//gives us the new feedback fron json
         setFeedback([data, ...feedback]) //using spread operator to update

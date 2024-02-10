@@ -7,6 +7,7 @@ const feedbackContext = createContext()
 //inorder for our components to get access 'state' and 'context'we wrap every component in a provider. 'children' are the components that's being passed in which are going to need access to context
 
 export const FeedbackProvider = ({children}) => { 
+    const[isLoading, setIsLoading] = useState(true)
     const [feedback, setFeedback] = useState([ //this is where state is stored
         
     ])
@@ -24,6 +25,7 @@ useEffect(() => {
         const data = await response.json()
         
         setFeedback(data)
+        setIsLoading(false)
     }
 
 //adds feedback
@@ -54,6 +56,7 @@ useEffect(() => {
     return <feedbackContext.Provider value={{ //pass in the data that needs passing; functions, date, etc...
         feedback,
         feedbackEdit, //the actual piece of state that holds the item(object)
+        isLoading,
         deleteFeedback,
         addFeedback,
         editFeedback,//function to edit

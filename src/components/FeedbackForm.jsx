@@ -13,7 +13,7 @@ const [rating, setRating] = useState(10)
 const [btnDisabled, setBtnDisabled] = useState('true')
 const [message, setMessage] = useState('')
 
-const {addFeedback, feedbackEdit} = useContext(feedbackContext)//feedback
+const {addFeedback, feedbackEdit, updateFeedback} = useContext(feedbackContext)//feedback
 
 useEffect(() => { //when an item is clicked we want the page to rerender
   if(feedbackEdit.edit === true) {//check if feedbackEdit has data
@@ -44,7 +44,13 @@ const handleSubmit = (e) => {
       text,
       rating
     }
-    addFeedback(newFeedback)//pass in the new feedback to to handle add function
+    
+    if (feedbackEdit.edit === true) {
+      updateFeedback(feedbackEdit.item.id, newFeedback)
+    } else {
+
+      addFeedback(newFeedback)//pass in the new feedback to to handle add function
+    }
     setText('')// calls setText to clear the text field after submission
   }
 }

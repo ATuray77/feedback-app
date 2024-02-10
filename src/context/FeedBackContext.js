@@ -49,12 +49,18 @@ export const FeedbackProvider = ({children}) => {
         })
     }
 
+//update feedback item
+    const updateFeedback =(id, updItem) =>{
+        setFeedback(feedback.map((item) => item.id === id ? {... item, ...updItem} : item)) //is the item id equal to the passed in id? if so...
+    }
+
     return <feedbackContext.Provider value={{ //pass in the data that needs passing; functions, date, etc...
         feedback,
+        feedbackEdit, //the actual piece of state that holds the item(object)
         deleteFeedback,
         addFeedback,
         editFeedback,//function to edit
-        feedbackEdit, //the actual piece of state that holds the item(object)
+        updateFeedback
     }}>
         {children}
     </feedbackContext.Provider>
